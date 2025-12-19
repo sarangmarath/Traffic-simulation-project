@@ -23,4 +23,3 @@ It allows users to visualize traffic patterns and understand how traffic signals
 
 ---
 
-## Project Structure
