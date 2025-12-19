@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light Timing Optimizer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+            color: #f1f1f1;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.6);
+            color: #00ffcc;
+            padding: 40px 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: larger;
+        }
+        nav {
+            background: rgba(20, 20, 20, 0.7);
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #00ffcc;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+        section {
+            padding: 50px;
+            max-width: 1000px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-top: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+        }
+        h2 {
+            color: #00ffcc;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        ul {
+            line-height: 1.8;
+        }
+        .simulation-box {
+            background: rgba(0, 0, 0, 0.4);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 1.3em;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #00ffcc, #00ccff);
+            color: #000;
+            font-weight: bold;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: linear-gradient(135deg, #ffcc00, #ff6600);
+            transform: scale(1.05);
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Traffic Light Timing Optimizer</h1>
+        <p>Applying Control Unit based Concepts to Traffic Management</p>
+        <a href="#simulation" class="btn">Start Simulation</a>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#simulation">Simulation</a>
+        <a href="#results">Results</a>
+        <a href="#team">Team</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Project</h2>
+        <p>The aim of this project is to design and simulate a traffic light control system that optimizes the timing of signals to reduce congestion and improve traffic flow. By applying concepts of CPU scheduling and pipelining, the project models how vehicles are managed at intersections, similar to how processes are scheduled and executed in a computer system.</p>
+
+        <h3>Aim</h3>
+        <ul>
+            <li>To design an efficient traffic light controller.</li>
+            <li>To optimize signal timing using CPU scheduling concepts.</li>
+            <li>To reduce congestion and waiting time at intersections.</li>
+            <li>To simulate traffic flow using code and circuit design.</li>
+        </ul>
+
+        <h3>Objectives</h3>
+        <ul>
+            <li>Apply Contro Unit based concept to traffic signals.</li>
+            <li>Use pipelining for parallel light control.</li>
+            <li>Minimize waiting time and avoid deadlocks (traffic jams).</li>
+            <li>Implement both circuit-based and code-based models.</li>
+        </ul>
+
+        <h3>Problem Statement</h3>
+        <ul>
+            <li>Fixed-time signals → inefficient during peak hours.</li>
+            <li>Causes congestion, delays, and fuel wastage.</li>
+            <li>Need for adaptive, intelligent signal timing.</li>
+        </ul>
+
+        <h3>CPU Scheduling Analogy</h3>
+        <p>In our model, vehicles are treated as processes, while the traffic light represents the CPU. When the light turns green, it is equivalent to a process being executed. A red light means the process is waiting. Different scheduling algorithms can be used to decide which lane gets the green signal, ensuring fairness or priority-based execution.</p>
+    </section>
+
+    <section id="simulation">
+        <h2>Simulation</h2>
+        <div class="simulation-box">
+            3D Simulation Coming Soon...
+        </div>
+            <a href="project1.html" class="btn">View Results</a>
+    </section>
+
+    <section id="results">
+        <h2>Results and Analysis</h2>
+        <p>We will analyze different scheduling algorithms (FCFS, Round Robin, Priority Scheduling) in terms of traffic efficiency. Metrics include:</p>
+        <ul>
+            <li>Average waiting time per lane</li>
+            <li>Total cars passed per minute</li>
+            <li>Comparison of algorithms in reducing congestion</li>
+        </ul>
+    </section>
+    <footer>
+        <p>Traffic Light Timing Optimizer Made with using Three.js</p>
+    </footer>
+</body>
+</html>

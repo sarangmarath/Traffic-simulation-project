@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Traffic Light Timing Optimizer — 3D Simulation</title>
+<style>
+:root{
+  --accent1:#00ffcc;
+  --accent2:#00ccff;
+  --muted:#9aa3a8;
+  --glass: rgba(255,255,255,0.06);
+}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Arial;background:linear-gradient(135deg,#0b0b0b,#131313);color:#e9f8f6}
+header{padding:24px;text-align:center;color:var(--accent1)}
+#app{display:grid;grid-template-columns:360px 1fr;gap:20px;padding:20px;min-height:calc(100% - 120px)}
+.panel{background:var(--glass);padding:18px;border-radius:12px;backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.04)}
+h3{margin:6px 0 12px;color:var(--accent1);text-transform:uppercase;font-size:13px}
+label{display:block;font-size:13px;color:var(--muted);margin-top:10px}
+select,input[type=range],button{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
+.controls{display:flex;gap:8px;margin-top:12px}
+.controls button{flex:1;padding:10px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#061017;border:none}
+.controls button:hover{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#072132;border:none;opacity:0.8}
+.controls button:active{opacity:0.6}
+.stat{margin-top:12px;font-size:13px;color:var(--muted)}
+#rendererContainer{border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.7); height:700px;}
+footer{padding:12px;text-align:center;color:#7fbbb0}
+.small{font-size:12px;color:var(--muted)}
+.row{display:flex;gap:8px}
+.row > *{flex:1}
+.legend{display:flex;gap:8px;align-items:center;margin-top:10px}
+.dot{width:12px;height:12px;border-radius:50%}
+</style>
+</head>
+<body>
+<header>
+<h1>Traffic Light Timing Optimizer — 3D Simulation</h1>
+<div class="small">Interactive 3D demo using Three.js </div>
+</header>
+
+<div id="app">
+<aside class="panel">
+<h3>Simulation Controls</h3>
+
+
+<label for="quantum">Quantum (sec) — for Round Robin</label>
+<input id="quantum" type="range" min="1" max="8" value="4">
+<div class="small">Current: <span id="quantumVal">4</span> s</div>
+
+<label for="speed">Simulation Speed</label>
+<input id="speed" type="range" min="0.25" max="3" step="0.25" value="1">
+<div class="small">Speed: <span id="speedVal">1.00</span>x</div>
+
+
+<div class="small">Order: N · E · S · W</div>
+
+<div class="controls">
+<button id="startBtn">Start</button>
+<button id="pauseBtn">Pause</button>
+</div>
+
+<h3>Legend</h3>
+<div class="legend"><div class="dot" style="background: #ff4444"></div> Red Light</div>
+<div class="legend"><div class="dot" style="background: #ffd700"></div> Yellow</div>
+<div class="legend"><div class="dot" style="background: #66ff66"></div> Green</div>
+</aside>
+
+<main>
+<div id="rendererContainer" class="panel"></div>
+</main>
+</div>
+
+<footer>Made with Three.js — simple cubes for cars, lights, and scheduling logic</footer>
+
+<!-- Three.js & controls -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/controls/OrbitControls.js"></script>
+
+<!-- Your simulation JS -->
+<script type="module" src="project2.js"></script>
+
+<script>
+  // Update quantum and speed values in real-time
+  const quantum = document.getElementById('quantum');
+  const quantumVal = document.getElementById('quantumVal');
+  quantum.addEventListener('input', () => quantumVal.textContent = quantum.value);
+
+  const speed = document.getElementById('speed');
+  const speedVal = document.getElementById('speedVal');
+  speed.addEventListener('input', () => speedVal.textContent = parseFloat(speed.value).toFixed(2));
+</script>
+</body>
+</html>
