@@ -1,7 +1,7 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.156.0/build/three.module.js';
 
 let scene, camera, renderer;
-// Add a currentSpeed property to the car object in the array to track its dynamic speed
+// Add a currentSpeed property to the car 
 let cars = { N: [], S: [], E: [], W: [] };
 let lights = {};
 let clock = new THREE.Clock();
@@ -9,19 +9,18 @@ let running = false;
 
 const ROAD_LENGTH = 40;
 const ROAD_WIDTH = 8;
-const MAX_CAR_SPEED = 6; // Renamed CAR_SPEED to MAX_CAR_SPEED
+const MAX_CAR_SPEED = 6; 
 const LIGHT_INTERVAL = 5;
 const LANE_OFFSET = 2;
 
 // Dynamics Constants for Smoother Movement
-const BRAKING_DISTANCE = 8; // Start slowing down this far from a stop point
-const ACCELERATION_RATE = 4; // Rate at which the car accelerates (units/sec^2)
-const DECELERATION_RATE = 8; // Rate at which the car brakes (units/sec^2)
+const BRAKING_DISTANCE = 8; 
+const ACCELERATION_RATE = 4; 
+const DECELERATION_RATE = 8; 
 
 // Define the stop line for cars approaching the intersection
-const STOP_LINE_Z = ROAD_WIDTH / 2; // Approaching Z-axis
-const STOP_LINE_X = ROAD_WIDTH / 2; // Approaching X-axis
-// Distance to maintain from the car in front (car length + buffer)
+const STOP_LINE_Z = ROAD_WIDTH / 2; 
+const STOP_LINE_X = ROAD_WIDTH / 2; 
 const CAR_BUFFER = 4; 
 
 init();
@@ -107,7 +106,6 @@ function init() {
   lights.W = createLight(-STOP_LINE_X - 1.5, LANE_OFFSET);
 
   // Cars
-  // Modified createCar to attach currentSpeed property
   const createCar = (color) => {
     const car = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.5, 3), new THREE.MeshStandardMaterial({ color }));
     car.currentSpeed = 0; // Initialize speed to zero
@@ -115,28 +113,28 @@ function init() {
   };
 
   for (let i = 0; i < 3; i++) {
-    // Car from North (Z+)
+    // Car from North 
     let carN = createCar(0xff4444);
     carN.position.set(-LANE_OFFSET, 0.25, -ROAD_LENGTH / 2 - 5 - i * CAR_BUFFER); 
     carN.rotation.y = 0;
     cars.N.push(carN);
     scene.add(carN); 
 
-    // Car from South (Z-)
+    // Car from South 
     let carS = createCar(0x66ff66);
     carS.position.set(LANE_OFFSET, 0.25, ROAD_LENGTH / 2 + 5 + i * CAR_BUFFER);
     carS.rotation.y = Math.PI;
     cars.S.push(carS);
     scene.add(carS); 
 
-    // Car from East (X-)
+    // Car from East 
     let carE = createCar(0x4444ff);
     carE.position.set(ROAD_LENGTH / 2 + 5 + i * CAR_BUFFER, 0.25, -LANE_OFFSET);
     carE.rotation.y = Math.PI / 2;
     cars.E.push(carE);
     scene.add(carE); 
 
-    // Car from West (X+)
+    // Car from West 
     let carW = createCar(0xffff44);
     carW.position.set(-ROAD_LENGTH / 2 - 5 - i * CAR_BUFFER, 0.25, LANE_OFFSET);
     carW.rotation.y = -Math.PI / 2;
@@ -144,7 +142,7 @@ function init() {
     scene.add(carW); 
   }
 
-  // Buttons (assuming you have buttons with these IDs in your HTML)
+  // Buttons 
   document.getElementById('startBtn').addEventListener('click', () => running = true);
   document.getElementById('pauseBtn').addEventListener('click', () => running = false);
 
@@ -161,8 +159,6 @@ function animate() {
 
   if (running) {
     const time = clock.getElapsedTime();
-    // Phase 0: North/South (Z-axis) is green
-    // Phase 1: East/West (X-axis) is green
     const greenPhase = Math.floor(time / LIGHT_INTERVAL) % 2; 
 
     // Traffic lights
@@ -220,7 +216,7 @@ function updateCarMovement(car, dir, lane, index, green, delta) {
       }
     }
 
-  } else if (dir === 'Z-') { // Southbound (-Z movement)
+  } else if (dir === 'Z-') { 
     currentPos = car.position.z;
     stopLimit = STOP_LINE_Z + 1.5;
 
@@ -244,7 +240,7 @@ function updateCarMovement(car, dir, lane, index, green, delta) {
       }
     }
 
-  } else if (dir === 'X+') { // Westbound (+X movement)
+  } else if (dir === 'X+') { // Westbound 
     currentPos = car.position.x;
     stopLimit = -STOP_LINE_X - 1.5;
 
@@ -268,7 +264,7 @@ function updateCarMovement(car, dir, lane, index, green, delta) {
       }
     }
 
-  } else if (dir === 'X-') { // Eastbound (-X movement)
+  } else if (dir === 'X-') { // Eastbound 
     currentPos = car.position.x;
     stopLimit = STOP_LINE_X + 1.5;
 
@@ -304,7 +300,6 @@ function updateCarMovement(car, dir, lane, index, green, delta) {
   // Update speed based on acceleration/deceleration
   car.currentSpeed += acceleration * delta;
   
-  // Clamp speed to prevent overshooting the target or going below zero/above max
   car.currentSpeed = Math.max(0, car.currentSpeed);
   car.currentSpeed = Math.min(MAX_CAR_SPEED, car.currentSpeed);
   car.currentSpeed = (acceleration > 0) ? Math.min(targetSpeed, car.currentSpeed) : Math.max(targetSpeed, car.currentSpeed);
