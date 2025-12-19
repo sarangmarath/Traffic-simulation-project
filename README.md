@@ -7,6 +7,12 @@ It allows users to visualize traffic patterns and understand how traffic signals
 
 ---
 
+## How to Run
+
+Use **Live Server** to run the program.
+
+---
+
 ## Features
 - Dynamic traffic simulation with multiple lanes.
 - Traffic signal control and timing.
