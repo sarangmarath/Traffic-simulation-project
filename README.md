@@ -2,7 +2,7 @@
 
 
 ## Overview
-This project is a **Traffic Simulation** system designed to demonstrate the flow of traffic using **HTML, CSS, JavaScript, and Java**.  
+This project is a **Traffic Simulation** system designed to demonstrate the flow of traffic using **HTML, CSS, and JavaScript**.  
 It allows users to visualize traffic patterns and understand how traffic signals, vehicles, and roads interact in a controlled environment.
 
 ---
